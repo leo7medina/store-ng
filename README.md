@@ -58,22 +58,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-
-## Guides
-
-Limpieza de imports sin usar
-
-```bash
-ng generate @angular/core:cleanup-unused-imports
-```
-
-Instalación de EsLint
-
-```bash
-ng add @angular-eslint/schematics
-```
-
-Ejecutar linter
-```bash
-ng lint
-```
