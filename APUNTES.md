@@ -106,3 +106,13 @@ module.exports = tseslint.config(
 );
 
 ```
+
+
+## Configuracion de ambientes
+
+Para habilitar los ambientes en Angular, debemos ejecutar el siguiente comando:
+
+```bash
+ng generate environment
+```
+
