@@ -144,3 +144,21 @@ style.scss
 @tailwind components;
 @tailwind utilities;
 ```
+
+
+
+## Buenas practicas con variables locales en Angular
+
+Aunque se permite manejar variables en el html, es recomendable no hacerlo.
+Es recomendado utilizar variables locales cuando se necesita acceder a multiples veces al valor de un signal.
+
+  ```code
+@if (product()) {
+  @let data = product()
+  <div>
+    <h1>{{data.title}}</h1>
+    <p>{{data.description}}</p>
+    <span>{{data.price}}</span>
+  </div>
+}
+```
