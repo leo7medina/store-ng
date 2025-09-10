@@ -14,25 +14,24 @@ import {ActivatedRoute} from '@angular/router';
 export class ProductDetail implements OnInit {
 
   @Input() id?: string;
+  @Input() slug?: string;
   product = signal<Product | null>(null);
   cover = signal('');
   private productService = inject(ProductService);
   private cartService = inject(CartService);
 
-  constructor(private route: ActivatedRoute) {}
-
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.id = id;
-    }
     if (this.id) {
-      this.getProductById(this.id);
+      this.getProductById({product_id: this.id});
     }
+    if (this.slug) {
+      this.getProductById({product_slug: this.slug});
+    }
+
   }
 
-  private getProductById(id: string) {
-    this.productService.getOne(id).subscribe({
+  private getProductById(params: {product_id?: string; product_slug?: string}) {
+    this.productService.getOne(params).subscribe({
       next: (product) => {
         this.product.set(product);
         if (product.images.length > 0) {
