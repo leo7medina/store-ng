@@ -1,4 +1,4 @@
-## Guides
+## Configuracion de  ESLint y Prettier
 
 Limpieza de imports sin usar
 
@@ -116,3 +116,31 @@ Para habilitar los ambientes en Angular, debemos ejecutar el siguiente comando:
 ng generate environment
 ```
 
+## Instalacion Tailwind
+
+
+```bash
+npm install -D tailwindcss@3 postcss autoprefixer
+npx tailwindcss init
+```
+
+tailwindcss.config.js
+```code 
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+style.scss
+```bash
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
