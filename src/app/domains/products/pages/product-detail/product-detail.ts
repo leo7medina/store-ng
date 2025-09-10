@@ -2,12 +2,12 @@ import {Component, inject, Input, OnInit, signal} from '@angular/core';
 import {Product} from '@shared/models/product';
 import {ProductService} from '@shared/services/product-service';
 import {CartService} from '@shared/services/cart-service';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.scss'
 })

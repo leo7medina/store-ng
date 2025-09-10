@@ -4,19 +4,23 @@
   <div class="w-full flex space-x-10">
     <div class="flex flex-col w-1/3">
       <div class="w-full rounded border border-gray-200">
-        <img
-          alt="ecommerce"
-          class="w-full object-cover object-center"
-          [src]="cover()"
-        />
+        <div class="relative h-80">
+          <img
+            [fill]="true"
+            alt="ecommerce"
+            class="w-full object-cover object-center"
+            [ngSrc]="cover()"
+          />
+        </div>
+
       </div>
       <div class="flex items-center justify-center mt-1">
         <div class="grid grid-cols-3 gap-1">
           @for (img of data.images; track img) {
-            <img
+            <img width="80" height="80" tabindex="0" role="button" (keydown.enter)="changeCover(img)"
               alt="ecommerce"
               class="object-cover object-center rounded border-2 border-gray-200"
-              [src]="img"
+              [ngSrc]="img"
               (click)="changeCover(img)"
               [class.border-red-400]="img === cover()"
             />
@@ -25,7 +29,7 @@
       </div>
     </div>
     <div class="mt-5 w-full">
-      <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ data.category?.name | uppercase }}</h2>
+      <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ data.category.name | uppercase }}</h2>
       <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
         {{ data.title }}
       </h1>
