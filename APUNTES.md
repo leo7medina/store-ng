@@ -191,4 +191,9 @@ getNameLength(): number {
   return name ? name.length : -1;
 }
 ```
-N
+
+## Migracion de Outputs: De Decoradores a Funciones
+
+```bash
+ng generate @angular/core:output-migration
+```
