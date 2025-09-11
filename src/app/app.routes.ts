@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import {Layout} from '@shared/components/layout/layout';
-import {NotFound} from '@info/pages/not-found/not-found';
+import { Layout } from '@shared/components/layout/layout';
+import { NotFound } from '@info/pages/not-found/not-found';
 
 export const routes: Routes = [
   {
@@ -9,24 +9,34 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('@products/pages/list-products/list-products').then(c => c.ListProducts)
+        loadComponent: () =>
+          import('@products/pages/list-products/list-products').then(
+            (c) => c.ListProducts,
+          ),
       },
       {
         path: 'category/:slug',
-        loadComponent: () => import('@products/pages/list-products/list-products').then(c => c.ListProducts)
+        loadComponent: () =>
+          import('@products/pages/list-products/list-products').then(
+            (c) => c.ListProducts,
+          ),
       },
       {
         path: 'about',
-        loadComponent: () => import('@info/pages/about/about').then(c => c.About)
+        loadComponent: () =>
+          import('@info/pages/about/about').then((c) => c.About),
       },
       {
         path: 'product/:slug',
-        loadComponent: () => import('@products/pages/product-detail/product-detail').then(c => c.ProductDetail)
+        loadComponent: () =>
+          import('@products/pages/product-detail/product-detail').then(
+            (c) => c.ProductDetail,
+          ),
       },
-    ]
+    ],
   },
   {
-    path: "**",
-    component: NotFound
-  }
+    path: '**',
+    component: NotFound,
+  },
 ];

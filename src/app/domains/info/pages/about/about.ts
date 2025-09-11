@@ -3,8 +3,8 @@ import { Counter } from '@shared/components/counter/counter';
 import { WaveAudio } from '@info/components/wave-audio/wave-audio';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {BehaviorSubject, Subject} from 'rxjs';
-import {toSignal} from '@angular/core/rxjs-interop';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-about',
@@ -36,7 +36,6 @@ export class About {
     this.message.set(input.value);
   }
 
-
   emitWithInit() {
     this.obsWithInit$.next('new value');
   }
@@ -44,5 +43,4 @@ export class About {
   emitWithoutInit() {
     this.obsWithoutInit$.next('new value ********');
   }
-
 }

@@ -2,8 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnChanges,
-  OnInit,
   signal,
   input,
 } from '@angular/core';
@@ -15,6 +13,7 @@ import { ProductService } from '@shared/services/product-service';
 import { CategoryService } from '@shared/services/category-service';
 import { CartService } from '@shared/services/cart-service';
 import { ProductItem } from '@products/components/product-item/product-item';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-list-products',
@@ -24,38 +23,35 @@ import { ProductItem } from '@products/components/product-item/product-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ListProducts implements OnInit, OnChanges {
-  products = signal<Product[]>([]);
-  categories = signal<Category[]>([]);
+export class ListProducts {
   private productService = inject(ProductService);
   private categoryService = inject(CategoryService);
   private cartService = inject(CartService);
-  cart = this.cartService.cart;
   readonly id = input<string>();
   readonly slug = input<string>();
-  ngOnInit() {
-    this.getListCategories();
-    this.getListProducts();
-  }
+  cart = this.cartService.cart;
 
-  ngOnChanges() {
-    this.getListProducts();
-  }
+  categoriesResource = rxResource({
+    stream: () => this.categoryService.getAll(),
+  });
+  productsResource = rxResource({
+    params: () => ({ category_slug: this.slug() }),
+    stream: ({ params }) => this.productService.getProducts(params),
+  });
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
   }
 
-  private getListProducts() {
-    this.productService.getProducts({ category_slug: this.slug() }).subscribe({
-      next: (products) => this.products.set(products),
-      error: (err) => console.log(err),
-    });
+  resetCategories() {
+    this.categoriesResource.set([]);
   }
-  private getListCategories() {
-    this.categoryService.getAll().subscribe({
-      next: (categories) => this.categories.set(categories),
-      error: (err) => console.log(err),
-    });
+
+  reloadCategories() {
+    this.categoriesResource.reload();
+  }
+
+  reloadProducts() {
+    this.productsResource.reload();
   }
 }
