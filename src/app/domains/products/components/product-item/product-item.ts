@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Output, input} from '@angular/core';
 import {Product} from '@shared/models/product';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {RouterLinkWithHref} from '@angular/router';
@@ -13,10 +13,10 @@ import {TimeAgoPipe} from '@shared/pipes/time-ago-pipe';
   styleUrl: './product-item.scss'
 })
 export class ProductItem {
-  @Input() product!: Product;
+  readonly product = input.required<Product>();
   @Output() addToCart = new EventEmitter();
 
   addToCartHandler() {
-    this.addToCart.emit(this.product);
+    this.addToCart.emit(this.product());
   }
 }

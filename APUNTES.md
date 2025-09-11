@@ -162,3 +162,33 @@ Es recomendado utilizar variables locales cuando se necesita acceder a multiples
   </div>
 }
 ```
+
+
+## Migración a Input Signals
+La reactividad en Angular ha evolucionado significativamente con la introducción de los signals, ofreciendo un rendimiento mejorado y una reactividad más granular. Esta nueva forma de manejar los inputs no solo optimiza el tiempo de ejecución de nuestras aplicaciones, sino que también proporciona una experiencia de desarrollo más intuitiva. Veamos cómo podemos migrar nuestros proyectos existentes a este nuevo modelo de reactividad y aprovechar todas sus ventajas.
+
+
+Para realizar esta migración, ejecuta el siguiente comando en tu terminal:
+```bash
+ng generate @angular/core:signal-input-migration
+```
+Nota: Despues del comando nos preguntara por algun directiorio, podemos poner . para migrar todo el proyecto o parcialmente como puede ser algun modulo => ./src/module/products
+La migración transforma código como este:
+```code 
+@Input() name: string | undefined;
+
+getNameLength(): number {
+  return this.name ? this.name.length : -1;
+}
+```
+
+En algo similar a esto:
+```code 
+@Input({required: true}) name = input<string>();
+
+getNameLength(): number {
+  const name = this.name();
+  return name ? name.length : -1;
+}
+```
+N
