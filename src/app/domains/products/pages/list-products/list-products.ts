@@ -3,7 +3,7 @@ import {
   Component,
   inject,
   signal,
-  input,
+  input, resource,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -31,8 +31,8 @@ export class ListProducts {
   readonly slug = input<string>();
   cart = this.cartService.cart;
 
-  categoriesResource = rxResource({
-    stream: () => this.categoryService.getAll(),
+  categoriesResource = resource({
+    loader: () => this.categoryService.getAllPromise(),
   });
   productsResource = rxResource({
     params: () => ({ category_slug: this.slug() }),
