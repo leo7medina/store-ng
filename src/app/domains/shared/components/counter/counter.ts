@@ -4,6 +4,7 @@ import {
   computed,
   effect,
   input,
+  model,
   OnDestroy,
   OnInit,
   signal,
@@ -19,9 +20,9 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
   // @Input() duration = 0;
   // @Input() message = '';
   $duration = input.required<number>();
-  $message = input.required<string>();
+  $message = model.required<string>();
   $doubleDuration = computed(() => this.$duration() * 2);
-  counter = signal(0);
+  $counter = signal(0);
   counterRef: number | undefined;
 
   constructor() {
@@ -63,7 +64,7 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
     console.log('message =>', this.$message());
     this.counterRef = window.setInterval(() => {
       console.log('run interval');
-      this.counter.update((statePrev) => statePrev + 1);
+      this.$counter.update((statePrev) => statePrev + 1);
     }, 1000);
   }
 
@@ -91,6 +92,6 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setMessage() {
-    // this.$message.(Math.random().toString());
+    this.$message.set(Math.random().toString());
   }
 }

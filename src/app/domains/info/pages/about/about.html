@@ -1,12 +1,17 @@
 <div class="px-10">
   <h1 class="text-lg font-bold">About</h1>
-  <p class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere vel delectus numquam aliquid itaque nulla. Alias fugiat est, voluptatem commodi soluta, ad et eveniet odit rem perferendis porro, quidem iste.</p>
+  <p class="text-xs">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere vel delectus
+    numquam aliquid itaque nulla. Alias fugiat est, voluptatem commodi soluta,
+    ad et eveniet odit rem perferendis porro, quidem iste.
+  </p>
   <p class="text-xs">Numero de clientes</p>
   <p>
-    <input [(ngModel)]="duration" type="range" min="0" max="1000">
+    <input [(ngModel)]="duration" type="range" min="0" max="1000" />
   </p>
+  <p>Parent message: {{ message() }}</p>
   @if (duration() > 0) {
-    <app-counter [$duration]="duration()" [$message]="message()"/>
+    <app-counter [$duration]="duration()" [($message)]="message" />
   }
   <div>
     <app-wave-audio audioUrl="separation-185196.mp3" />
