@@ -17,8 +17,6 @@ import {
   styleUrl: './counter.scss',
 })
 export class Counter implements OnInit, AfterViewInit, OnDestroy {
-  // @Input() duration = 0;
-  // @Input() message = '';
   $duration = input.required<number>();
   $message = model.required<string>();
   $doubleDuration = computed(() => this.$duration() * 2);
