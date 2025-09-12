@@ -221,3 +221,16 @@ La migración hacia el builder "application" se puede realizar de forma automát
 ng update @angular/cli --name use-application-builder
 ```
 
+
+Las principales ventajas de implementar SSR son:
+
+Mejor rendimiento: La carga inicial es más rápida porque el usuario recibe contenido ya renderizado.
+Optimización para SEO: Los motores de búsqueda pueden indexar correctamente el contenido de tu sitio.
+Mejor experiencia en dispositivos con recursos limitados: Al reducir la carga de procesamiento en el cliente.
+
+Habilitar SSR en Angular
+```bash
+ng add @angular/ssr
+```
+
+

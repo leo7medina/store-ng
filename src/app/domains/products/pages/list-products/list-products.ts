@@ -2,13 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal,
-  input, resource,
+  input,
+  resource,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '@shared/models/product';
-import { Category } from '@shared/models/category';
 import { ProductService } from '@shared/services/product-service';
 import { CategoryService } from '@shared/services/category-service';
 import { CartService } from '@shared/services/cart-service';

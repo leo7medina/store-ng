@@ -8,9 +8,8 @@ describe('WaveAudio', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WaveAudio]
-    })
-    .compileComponents();
+      imports: [WaveAudio],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(WaveAudio);
     component = fixture.componentInstance;
