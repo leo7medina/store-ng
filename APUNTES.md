@@ -197,3 +197,27 @@ getNameLength(): number {
 ```bash
 ng generate @angular/core:output-migration
 ```
+
+
+## Server Side Rendering
+
+Para aprovechar al máximo las ventajas del Server Side Rendering y otras funcionalidades avanzadas, Angular ha desarrollado nuevos builders que ofrecen diferentes opciones según las necesidades de cada proyecto. Estos builders son fundamentales para determinar cómo se construirá nuestra aplicación.
+
+La documentación oficial de Angular CLI nos presenta cuatro builders principales:
+
+- Application: Es el builder más recomendado y moderno. Permite construir tanto aplicaciones Client Side como Server Side Rendering. Este builder incorpora las innovaciones más recientes en cuanto a SSR y detección de cambios.
+
+- Browser-esbuild: Un builder que genera aplicaciones Client Side, pero no permite implementar Server Side Rendering.
+
+- Browser: Proporciona retrocompatibilidad, especialmente si necesitas mantener integraciones con Webpack.
+
+- Server: Específico para configuraciones de Server Side Rendering.
+
+El builder "application" utiliza esbuild, un transpilador mucho más rápido que Webpack, lo que resulta en tiempos de compilación significativamente reducidos, especialmente en proyectos grandes.
+
+
+La migración hacia el builder "application" se puede realizar de forma automática con un simple comando:
+```bash
+ng update @angular/cli --name use-application-builder
+```
+

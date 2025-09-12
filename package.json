@@ -34,7 +34,7 @@
     "wavesurfer.js": "^7.10.1"
   },
   "devDependencies": {
-    "@angular/build": "^20.1.4",
+    "@angular/build": "^20.3.1",
     "@angular/cli": "^20.1.4",
     "@angular/compiler-cli": "^20.1.0",
     "@types/jasmine": "~5.1.0",
