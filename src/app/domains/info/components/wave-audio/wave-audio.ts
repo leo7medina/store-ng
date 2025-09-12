@@ -5,6 +5,7 @@ import {
   signal,
   input,
   viewChild,
+  afterNextRender,
 } from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 
@@ -14,19 +15,21 @@ import WaveSurfer from 'wavesurfer.js';
   templateUrl: './wave-audio.html',
   styleUrl: './wave-audio.scss',
 })
-export class WaveAudio implements AfterViewInit {
+export class WaveAudio {
   readonly audioUrl = input.required<string>();
   $waveContainerRef = viewChild.required<ElementRef<HTMLDivElement>>('wave');
   private ws!: WaveSurfer;
   isPlaying = signal(false);
 
-  ngAfterViewInit() {
-    this.ws = WaveSurfer.create({
-      url: this.audioUrl(),
-      container: this.$waveContainerRef()?.nativeElement,
+  constructor() {
+    afterNextRender(() => {
+      this.ws = WaveSurfer.create({
+        url: this.audioUrl(),
+        container: this.$waveContainerRef()?.nativeElement,
+      });
+      this.ws.on('play', () => this.isPlaying.set(true));
+      this.ws.on('pause', () => this.isPlaying.set(false));
     });
-    this.ws.on('play', () => this.isPlaying.set(true));
-    this.ws.on('pause', () => this.isPlaying.set(false));
   }
 
   playPause() {

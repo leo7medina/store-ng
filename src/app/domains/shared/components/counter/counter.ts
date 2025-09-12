@@ -1,4 +1,5 @@
 import {
+  afterNextRender,
   AfterViewInit,
   Component,
   computed,
@@ -21,7 +22,7 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
   $message = model.required<string>();
   $doubleDuration = computed(() => this.$duration() * 2);
   $counter = signal(0);
-  counterRef: number | undefined;
+  counterRef: number | null = null;
 
   constructor() {
     //NO ASYNC
@@ -38,19 +39,14 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
       this.$message();
       this.doSomethingTwo();
     });
-  }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   //before and during render
-  //   console.log('ngOnChanges counter');
-  //   console.log('-'.repeat(10));
-  //   if (changes.hasOwnProperty('duration')) {
-  //     const duration = changes['duration'];
-  //     if (duration.currentValue !== duration.previousValue) {
-  //       this.doSomething();
-  //     }
-  //   }
-  // }
+    afterNextRender(() => {
+      this.counterRef = window.setInterval(() => {
+        console.log('run interval');
+        this.$counter.update((statePrev) => statePrev + 1);
+      }, 1000);
+    });
+  }
 
   ngOnInit() {
     // after render
@@ -60,10 +56,7 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
     console.log('-'.repeat(10));
     console.log('duration =>', this.$duration());
     console.log('message =>', this.$message());
-    this.counterRef = window.setInterval(() => {
-      console.log('run interval');
-      this.$counter.update((statePrev) => statePrev + 1);
-    }, 1000);
+
   }
 
   ngAfterViewInit() {
@@ -76,7 +69,9 @@ export class Counter implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
-    window.clearInterval(this.counterRef);
+    if (this.counterRef) {
+      window.clearInterval(this.counterRef);
+    }
   }
 
   doSomething() {
