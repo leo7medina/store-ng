@@ -234,3 +234,19 @@ ng add @angular/ssr
 ```
 
 
+## The Open Graph
+
+El Open Graph Protocol es un conjunto de metatags estandarizados que todos los navegadores y plataformas sociales acordaron utilizar para generar previsualizaciones de enlaces. Estos metatags tienen el prefijo "og:" y son fundamentales para crear cards atractivas al compartir contenido.
+
+Propiedades mínimas requeridas para OpenGraph
+Para generar una previsualización adecuada, necesitamos al menos estas propiedades:
+
+- og:title - El título del contenido
+- og:description - Una descripción breve
+- og:image - La URL de la imagen a mostrar
+- og:url - La URL canónica del contenido
+- og:type - El tipo de contenido (website, product, article, etc.)
+
+
+https://ogp.me/
+
