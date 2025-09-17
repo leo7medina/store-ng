@@ -27,6 +27,10 @@ export const routes: Routes = [
           import('@info/pages/about/about').then((c) => c.About),
       },
       {
+        path: 'locations',
+        loadComponent: () => import('@info/pages/locations/locations'),
+      },
+      {
         path: 'product/:slug',
         loadComponent: () =>
           import('@products/pages/product-detail/product-detail').then(
